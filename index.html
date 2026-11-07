@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro-Fondo: Regala una Sonrisa esta Navidad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #fff9f0, #fff);
+            min-height: 100vh;
+            padding: 15px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #c41e3a, #e63946);
+            border-radius: 16px;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1rem;
+        }
+
+        .subtitulo {
+            background: #fff3cd;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .premios-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .premio-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid;
+        }
+
+        .premio-card:nth-child(1) { border-top-color: #f59e0b; }
+        .premio-card:nth-child(2) { border-top-color: #9ca3af; }
+        .premio-card:nth-child(3) { border-top-color: #c41e3a; }
+
+        .premio-numero {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .premio-card:nth-child(1) .premio-numero { color: #f59e0b; }
+        .premio-card:nth-child(2) .premio-numero { color: #6b7280; }
+        .premio-card:nth-child(3) .premio-numero { color: #c41e3a; }
+
+        .info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-around;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #c41e3a;
+        }
+
+        .progress-bar {
+            height: 22px;
+            background: #e5e7eb;
+            border-radius: 11px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            width: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: width 0.4s ease;
+        }
+
+        .numbers-section h3 {
+            margin: 25px 0 12px;
+            color: #333;
+            text-align: center;
+        }
+
+        .leyenda {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .leyenda span {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 0 4px;
+        }
+
+        .disp { background: #dcfce7; color: #166534; }
+        .vend { background: #fee2e2; color: #991b1b; }
+        .sel { background: #bfdbfe; color: #1e40af; }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+            gap: 8px;
+        }
+
+        .numero {
+            padding: 8px 4px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+        }
+
+        .numero.disponible {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #86efac;
+        }
+
+        .numero.disponible:hover {
+            background: #86efac;
+            transform: scale(1.08);
+        }
+
+        .numero.vendido {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .numero.seleccionado {
+            background: #bfdbfe;
+            color: #1e40af;
+            border-color: #93c5fd;
+            box-shadow: 0 0 6px rgba(37, 99, 235, 0.35);
+        }
+
+        .seleccionados-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0f2fe;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .seleccionados-box.activo {
+            display: block;
+        }
+
+        .comprar-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+        }
+
+        .reglas {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef3c7;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .reglas h4 {
+            margin-bottom: 10px;
+            color: #92400e;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .scroll-tip {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin: 8px 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> PRO-FONDO: Regala una Sonrisa esta Navidad</h1>
+            <p>Fundación Manitos a Colores — Recaudando para juguetes en el Día de Reyes </p>
+        </header>
+
+        <div class="subtitulo">
+             Tu boleto también es una ayuda para regalar sonrisas a niños necesitados.
+        </div>
+
+        <!-- PREMIOS -->
+        <div class="premios-section">
+            <div class="premio-card">
+                <div class="premio-numero"> 1er Premio</div>
+                <h3>Cena navideña para 10 personas</h3>
+            </div>
+            <div class="premio-card">
+                <div class="premio-numero"> 2do Premio</div>
+                <h3>Canasta navideña</h3>
+            </div>
+            <div class="premio-card">
+                <div class="premio-numero"> 3er Premio</div>
+                <h3>Bono de compra La Sirena RD$3,500</h3>
+            </div>
+        </div>
+
+        <!-- INFO: Precio, Fecha, Progreso -->
+        <div class="info-bar">
+            <div class="info-item">
+                <strong>Valor del boleto</strong>
+                <span>RD$ 250.00</span>
+            </div>
+            <div class="info-item">
+                <strong>Fecha del sorteo</strong>
+                <span>20 de diciembre</span>
+            </div>
+            <div class="info-item">
+                <strong>Números vendidos</strong>
+                <span id="vendidosCount">0 / 300</span>
+            </div>
+        </div>
+
+        <p style="text-align:center; font-size:0.9rem; color:#555;">Progreso de venta</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill">0%</div>
+        </div>
+
+        <!-- NÚMEROS -->
+        <div class="numbers-section">
+            <h3> Selecciona tu(s) número(s):</h3>
+            <div class="leyenda">
+                <span class="disp"> Disponible</span>
+                <span class="vend"> Vendido</span>
+                <span class="sel"> Seleccionado</span>
+            </div>
+            <p class="scroll-tip"> Desplázate hacia abajo para ver todos los números</p>
+            
+            <div class="numbers-grid" id="numerosContainer">
+                <!-- Se generan con JavaScript -->
+            </div>
+
+            <div class="seleccionados-box" id="seleccionadosBox">
+                <strong> Tus números seleccionados:</strong>
+                <span id="listaNumeros"></span>
+                <p style="margin-top:8px; font-weight:bold; color:#1e40af;">
+                    Total a pagar: <span id="totalPagar">RD$ 0.00</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÓN COMPRAR -->
+        <div class="comprar-box">
+            <h3> Reserva y paga por WhatsApp</h3>
+            <p>Envía tus números y te confirmamos la reserva al recibir el pago</p>
+            <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank">
+                 Reservar por WhatsApp
+            </a>
+        </div>
+
+        <!-- REGLAS -->
+        <div class="reglas">
+            <h4> Reglas de la Rifa</h4>
+            <p>
+                1. Valor por boleto: <strong>RD$250.00</strong><br>
+                2. Fecha límite de venta: 19 de diciembre de 2026<br>
+                3. Sorteo: 20 de diciembre de 2026<br>
+                4. Los números se reservan una vez confirmado el pago<br>
+                5. Los fondos recaudados se destinan a regalar juguetes a niños necesitados en el Día de Reyes<br>
+                6. Solo participan personas mayores de 18 años<br>
+                7. Organizador: Fundación Manitos a Colores — RNC: _________<br>
+                8. Autorización oficial N°: _________
+            </p>
+        </div>
+
+        <footer>
+            <p>© 2026 Fundación Manitos a Colores | Pro-Fondo: Regala una Sonrisa esta Navidad<br>
+             Con fines benéficos. Juega responsablemente.</p>
+        </footer>
+    </div>
+
+    <script>
+        // ================== CONFIGURACIÓN ==================
+        const TOTAL_NUMEROS = 300;
+        const PRECIO_BOLETO = 250;
+        const TELEFONO_WHATSAPP = "18093163500"; // Tu número configurado
+
+        // Marca aquí los números que ya están VENDIDOS
+        // Ejemplo: const numerosVendidos = [1, 5, 12, 88, 150];
+        const numerosVendidos = [];
+
+        // ================== LÓGICA ==================
+        let numerosSeleccionados = [];
+        const container = document.getElementById('numerosContainer');
+
+        // Generar los 300 números
+        for (let i = 1; i <= TOTAL_NUMEROS; i++) {
+            const num = String(i).padStart(3, '0');
+            const estaVendido = numerosVendidos.includes(i);
+
+            const div = document.createElement('div');
+            div.className = `numero ${estaVendido ? 'vendido' : 'disponible'}`;
+            div.textContent = num;
+            div.dataset.numero = num;
+            div.dataset.valor = i;
+
+            if (!estaVendido) {
+                div.addEventListener('click', () => toggleNumero(num, div));
+            }
+
+            container.appendChild(div);
+        }
+
+        // Actualizar contador y barra de progreso
+        function actualizarProgreso() {
+            const vendidos = numerosVendidos.length;
+            const porcentaje = Math.round((vendidos / TOTAL_NUMEROS) * 100);
+            document.getElementById('vendidosCount').textContent = `${vendidos} / ${TOTAL_NUMEROS}`;
+            document.getElementById('progressFill').style.width = `${porcentaje}%`;
+            document.getElementById('progressFill').textContent = `${porcentaje}%`;
+        }
+
+        // Seleccionar/deseleccionar número
+        function toggleNumero(numero, elemento) {
+            const idx = numerosSeleccionados.indexOf(numero);
+            
+            if (idx === -1) {
+                numerosSeleccionados.push(numero);
+                elemento.classList.remove('disponible');
+                elemento.classList.add('seleccionado');
+            } else {
+                numerosSeleccionados.splice(idx, 1);
+                elemento.classList.remove('seleccionado');
+                elemento.classList.add('disponible');
+            }
+            
+            actualizarSeleccion();
+        }
+
+        // Actualizar lista y enlace de WhatsApp
+        function actualizarSeleccion() {
+            const box = document.getElementById('seleccionadosBox');
+            const lista = document.getElementById('listaNumeros');
+            const total = document.getElementById('totalPagar');
+            const btn = document.getElementById('btnWhatsapp');
+            
+            if (numerosSeleccionados.length > 0) {
+                box.classList.add('activo');
+                lista.textContent = numerosSeleccionados.join(', ');
+                total.textContent = `RD$ ${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}`;
+                
+                // Mensaje automático con los números y el total
+                const mensaje = encodeURIComponent(
+                    `¡Hola! Quiero participar en la rifa "Regala una Sonrisa esta Navidad". ` +
+                    `Mis números son: ${numerosSeleccionados.join(', ')}.\n` +
+                    `Total a pagar: RD$${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}`
+                );
+                btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensaje}`;
+            } else {
+                box.classList.remove('activo');
+                btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent('¡Hola! Quiero participar en la rifa.')}`;
+            }
+        }
+
+        // Inicializar
+        actualizarProgreso();
+    </script>
+</body>
+</html>
