@@ -31,6 +31,7 @@
             border-radius: 16px;
             color: white;
             margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
         }
 
         header h1 {
@@ -41,6 +42,25 @@
         header p {
             opacity: 0.95;
             font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .instagram-link:hover {
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .subtitulo {
@@ -63,10 +83,19 @@
         .premio-card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border-top: 4px solid;
+            overflow: hidden;
+        }
+
+        .premio-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
         }
 
         .premio-card:nth-child(1) { border-top-color: #f59e0b; }
@@ -74,14 +103,19 @@
         .premio-card:nth-child(3) { border-top-color: #c41e3a; }
 
         .premio-numero {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .premio-card:nth-child(1) .premio-numero { color: #f59e0b; }
         .premio-card:nth-child(2) .premio-numero { color: #6b7280; }
         .premio-card:nth-child(3) .premio-numero { color: #c41e3a; }
+
+        .premio-card h3 {
+            font-size: 0.95rem;
+            color: #444;
+        }
 
         .info-bar {
             display: flex;
@@ -274,26 +308,32 @@
 <body>
     <div class="container">
         <header>
-            <h1> PRO-FONDO: Regala una Sonrisa esta Navidad</h1>
-            <p>Fundación Manitos a Colores — Recaudando para juguetes en el Día de Reyes </p>
+            <h1>PRO-FONDO: Regala una Sonrisa esta Navidad</h1>
+            <p>Fundación Manitos a Colores — Recaudando para juguetes en el Día de Reyes</p>
+            <a href="https://www.instagram.com/manitosacoloresfundacion?srtk=MWd4cnBtODBteGxjbg==" class="instagram-link" target="_blank">
+                📷 Síguenos en Instagram
+            </a>
         </header>
 
         <div class="subtitulo">
-             Tu boleto también es una ayuda para regalar sonrisas a niños necesitados.
+            Tu boleto también es una ayuda para regalar sonrisas a niños necesitados.
         </div>
 
-        <!-- PREMIOS -->
+        <!-- PREMIOS CON IMÁGENES -->
         <div class="premios-section">
             <div class="premio-card">
-                <div class="premio-numero"> 1er Premio</div>
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&fit=crop&q=60" alt="Cena navideña">
+                <div class="premio-numero">1er Premio</div>
                 <h3>Cena navideña para 10 personas</h3>
             </div>
             <div class="premio-card">
-                <div class="premio-numero"> 2do Premio</div>
+                <img src="https://images.unsplash.com/photo-1513297887119-d46091b24bfa?w=500&auto=format&fit=crop&q=60" alt="Canasta navideña">
+                <div class="premio-numero">2do Premio</div>
                 <h3>Canasta navideña</h3>
             </div>
             <div class="premio-card">
-                <div class="premio-numero"> 3er Premio</div>
+                <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=500&auto=format&fit=crop&q=60" alt="Bono de compra">
+                <div class="premio-numero">3er Premio</div>
                 <h3>Bono de compra La Sirena RD$3,500</h3>
             </div>
         </div>
@@ -321,20 +361,20 @@
 
         <!-- NÚMEROS -->
         <div class="numbers-section">
-            <h3> Selecciona tu(s) número(s):</h3>
+            <h3>Selecciona tu(s) número(s):</h3>
             <div class="leyenda">
-                <span class="disp"> Disponible</span>
-                <span class="vend"> Vendido</span>
-                <span class="sel"> Seleccionado</span>
+                <span class="disp">Disponible</span>
+                <span class="vend">Vendido</span>
+                <span class="sel">Seleccionado</span>
             </div>
-            <p class="scroll-tip"> Desplázate hacia abajo para ver todos los números</p>
+            <p class="scroll-tip">Desplázate hacia abajo para ver todos los números</p>
             
             <div class="numbers-grid" id="numerosContainer">
                 <!-- Se generan con JavaScript -->
             </div>
 
             <div class="seleccionados-box" id="seleccionadosBox">
-                <strong> Tus números seleccionados:</strong>
+                <strong>Tus números seleccionados:</strong>
                 <span id="listaNumeros"></span>
                 <p style="margin-top:8px; font-weight:bold; color:#1e40af;">
                     Total a pagar: <span id="totalPagar">RD$ 0.00</span>
@@ -344,16 +384,16 @@
 
         <!-- BOTÓN COMPRAR -->
         <div class="comprar-box">
-            <h3> Reserva y paga por WhatsApp</h3>
+            <h3>Reserva y paga por WhatsApp</h3>
             <p>Envía tus números y te confirmamos la reserva al recibir el pago</p>
             <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank">
-                 Reservar por WhatsApp
+                Reservar por WhatsApp
             </a>
         </div>
 
         <!-- REGLAS -->
         <div class="reglas">
-            <h4> Reglas de la Rifa</h4>
+            <h4>Reglas de la Rifa</h4>
             <p>
                 1. Valor por boleto: <strong>RD$250.00</strong><br>
                 2. Fecha límite de venta: 19 de diciembre de 2026<br>
@@ -361,14 +401,13 @@
                 4. Los números se reservan una vez confirmado el pago<br>
                 5. Los fondos recaudados se destinan a regalar juguetes a niños necesitados en el Día de Reyes<br>
                 6. Solo participan personas mayores de 18 años<br>
-                7. Organizador: Fundación Manitos a Colores — RNC: _________<br>
-                8. Autorización oficial N°: _________
+                7. Organizador: Fundación Manitos a Colores
             </p>
         </div>
 
         <footer>
             <p>© 2026 Fundación Manitos a Colores | Pro-Fondo: Regala una Sonrisa esta Navidad<br>
-             Con fines benéficos. Juega responsablemente.</p>
+            Con fines benéficos. Juega responsablemente.</p>
         </footer>
     </div>
 
@@ -382,11 +421,60 @@
         // Ejemplo: const numerosVendidos = [1, 5, 12, 88, 150];
         const numerosVendidos = [];
 
+        // ================== EFECTOS DE SONIDO (WEB AUDIO API) ==================
+        let audioCtx;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function reproducirSonidoSeleccion(esSeleccionar) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(esSeleccionar ? 587.33 : 440, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            } catch (e) {}
+        }
+
+        function reproducirSonidoBoton() {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.15);
+
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.15);
+            } catch (e) {}
+        }
+
         // ================== LÓGICA ==================
         let numerosSeleccionados = [];
         const container = document.getElementById('numerosContainer');
 
-        // Generar los 300 números
         for (let i = 1; i <= TOTAL_NUMEROS; i++) {
             const num = String(i).padStart(3, '0');
             const estaVendido = numerosVendidos.includes(i);
@@ -404,7 +492,8 @@
             container.appendChild(div);
         }
 
-        // Actualizar contador y barra de progreso
+        document.getElementById('btnWhatsapp').addEventListener('click', reproducirSonidoBoton);
+
         function actualizarProgreso() {
             const vendidos = numerosVendidos.length;
             const porcentaje = Math.round((vendidos / TOTAL_NUMEROS) * 100);
@@ -413,7 +502,6 @@
             document.getElementById('progressFill').textContent = `${porcentaje}%`;
         }
 
-        // Seleccionar/deseleccionar número
         function toggleNumero(numero, elemento) {
             const idx = numerosSeleccionados.indexOf(numero);
             
@@ -421,16 +509,17 @@
                 numerosSeleccionados.push(numero);
                 elemento.classList.remove('disponible');
                 elemento.classList.add('seleccionado');
+                reproducirSonidoSeleccion(true);
             } else {
                 numerosSeleccionados.splice(idx, 1);
                 elemento.classList.remove('seleccionado');
                 elemento.classList.add('disponible');
+                reproducirSonidoSeleccion(false);
             }
             
             actualizarSeleccion();
         }
 
-        // Actualizar lista y enlace de WhatsApp
         function actualizarSeleccion() {
             const box = document.getElementById('seleccionadosBox');
             const lista = document.getElementById('listaNumeros');
@@ -442,7 +531,6 @@
                 lista.textContent = numerosSeleccionados.join(', ');
                 total.textContent = `RD$ ${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}`;
                 
-                // Mensaje automático con los números y el total
                 const mensaje = encodeURIComponent(
                     `¡Hola! Quiero participar en la rifa "Regala una Sonrisa esta Navidad". ` +
                     `Mis números son: ${numerosSeleccionados.join(', ')}.\n` +
@@ -455,7 +543,6 @@
             }
         }
 
-        // Inicializar
         actualizarProgreso();
     </script>
 </body>
