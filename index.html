@@ -73,6 +73,34 @@
             font-weight: 500;
         }
 
+        /* Sección de Instrucciones / Cómo Participar */
+        .como-participar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid #16a34a;
+        }
+
+        .como-participar h3 {
+            color: #16a34a;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .como-participar ol {
+            padding-left: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .como-participar li {
+            margin-bottom: 8px;
+        }
+
         .premios-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -310,7 +338,18 @@
             Tu boleto también es una ayuda para regalar sonrisas a niños necesitados.
         </div>
 
-        <!-- PREMIOS SIN IMÁGENES -->
+        <!-- CÓMO PARTICIPAR -->
+        <div class="como-participar">
+            <h3>¿Cómo participar?</h3>
+            <ol>
+                <li><strong>Selecciona tu(s) número(s)</strong> disponibles en la cuadrícula de abajo.</li>
+                <li>Haz clic en el botón de WhatsApp para <strong>enviar tus datos y números seleccionados</strong>.</li>
+                <li>Realiza el pago correspondiente para confirmar tu participación.</li>
+                <li><strong>¡Síguenos en Instagram!</strong> El sorteo se realizará en vivo a través de nuestra página.</li>
+            </ol>
+        </div>
+
+        <!-- PREMIOS -->
         <div class="premios-section">
             <div class="premio-card">
                 <div class="premio-numero">1er Premio</div>
@@ -385,7 +424,7 @@
             <p>
                 1. Valor por boleto: <strong>RD$250.00</strong><br>
                 2. Fecha límite de venta: 19 de diciembre de 2026<br>
-                3. Sorteo: 20 de diciembre de 2026<br>
+                3. Sorteo: 20 de diciembre de 2026 (Transmitido vía Instagram)<br>
                 4. Los números se reservan una vez confirmado el pago<br>
                 5. Los fondos recaudados se destinan a regalar juguetes a niños necesitados en el Día de Reyes<br>
                 6. Solo participan personas mayores de 18 años<br>
@@ -521,8 +560,9 @@
                 
                 const mensaje = encodeURIComponent(
                     `¡Hola! Quiero participar en la rifa "Regala una Sonrisa esta Navidad". ` +
-                    `Mis números son: ${numerosSeleccionados.join(', ')}.\n` +
-                    `Total a pagar: RD$${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}`
+                    `Mis números seleccionados son: ${numerosSeleccionados.join(', ')}.\n` +
+                    `Total a pagar: RD$${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}\n\n` +
+                    `Por favor envíame los datos para realizar el pago.`
                 );
                 btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensaje}`;
             } else {
@@ -534,4 +574,4 @@
         actualizarProgreso();
     </script>
 </body>
-</html>  
+</html>
