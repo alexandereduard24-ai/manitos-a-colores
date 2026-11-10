@@ -73,7 +73,6 @@
             font-weight: 500;
         }
 
-        /* Sección de Instrucciones / Cómo Participar */
         .como-participar {
             background: white;
             border-radius: 12px;
@@ -99,6 +98,40 @@
 
         .como-participar li {
             margin-bottom: 8px;
+        }
+
+        .banco-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .banco-box {
+            background: #eef2ff;
+            border: 2px dashed #6366f1;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .banco-box h3 {
+            color: #3730a3;
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+        }
+
+        .banco-cuenta {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e1b4b;
+            letter-spacing: 1px;
+            margin: 4px 0;
+        }
+
+        .banco-box p {
+            font-size: 0.85rem;
+            color: #444;
         }
 
         .premios-section {
@@ -255,7 +288,7 @@
 
         .seleccionados-box {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background: #e0f2fe;
             border-radius: 10px;
             display: none;
@@ -263,6 +296,21 @@
 
         .seleccionados-box.activo {
             display: block;
+        }
+
+        .form-group {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group input {
+            padding: 10px 14px;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            width: 100%;
         }
 
         .comprar-box {
@@ -342,11 +390,28 @@
         <div class="como-participar">
             <h3>¿Cómo participar?</h3>
             <ol>
-                <li><strong>Selecciona tu(s) número(s)</strong> disponibles en la cuadrícula de abajo.</li>
-                <li>Haz clic en el botón de WhatsApp para <strong>enviar tus datos y números seleccionados</strong>.</li>
-                <li>Realiza el pago correspondiente para confirmar tu participación.</li>
-                <li><strong>¡Síguenos en Instagram!</strong> El sorteo se realizará en vivo a través de nuestra página.</li>
+                <li><strong>Selecciona tu(s) número(s)</strong> disponibles abajo.</li>
+                <li>Escribe tu <strong>Nombre Completo</strong> y <strong>Teléfono</strong>.</li>
+                <li>Realiza tu pago por transferencia o depósito a cualquiera de nuestras cuentas de ahorros.</li>
+                <li>Haz clic en el botón para enviar los datos y el comprobante por <strong>WhatsApp</strong>.</li>
+                <li><strong>¡Síguenos en Instagram!</strong> El sorteo se realizará en vivo por nuestra página.</li>
             </ol>
+        </div>
+
+        <!-- DATOS BANCARIOS -->
+        <div class="banco-container">
+            <div class="banco-box">
+                <h3>💳 Banco BHD</h3>
+                <p>Cuenta de Ahorros</p>
+                <div class="banco-cuenta">21758490021</div>
+                <p><strong>Titular:</strong> Estefany Familia</p>
+            </div>
+            <div class="banco-box">
+                <h3>💳 Banreservas</h3>
+                <p>Cuenta de Ahorros</p>
+                <div class="banco-cuenta">9603711832</div>
+                <p><strong>Titular:</strong> Alexander Pérez</p>
+            </div>
         </div>
 
         <!-- PREMIOS -->
@@ -400,21 +465,26 @@
                 <!-- Se generan con JavaScript -->
             </div>
 
+            <!-- FORMULARIO DE COMPRADOR -->
             <div class="seleccionados-box" id="seleccionadosBox">
-                <strong>Tus números seleccionados:</strong>
-                <span id="listaNumeros"></span>
-                <p style="margin-top:8px; font-weight:bold; color:#1e40af;">
+                <strong>Mis números son:</strong> <span id="listaNumeros"></span>
+                <p style="margin-top:6px; font-weight:bold; color:#1e40af;">
                     Total a pagar: <span id="totalPagar">RD$ 0.00</span>
                 </p>
+
+                <div class="form-group">
+                    <input type="text" id="nombreComprador" placeholder="Tu Nombre y Apellido..." oninput="actualizarSeleccion()">
+                    <input type="tel" id="telefonoComprador" placeholder="Tu Teléfono / WhatsApp..." oninput="actualizarSeleccion()">
+                </div>
             </div>
         </div>
 
         <!-- BOTÓN COMPRAR -->
         <div class="comprar-box">
-            <h3>Reserva y paga por WhatsApp</h3>
-            <p>Envía tus números y te confirmamos la reserva al recibir el pago</p>
+            <h3>Reserva y confirma tu pago por WhatsApp</h3>
+            <p>Se abrirá WhatsApp con el resumen de tus números y los datos de las cuentas</p>
             <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank">
-                Reservar por WhatsApp
+                Enviar por WhatsApp
             </a>
         </div>
 
@@ -444,11 +514,9 @@
         const PRECIO_BOLETO = 250;
         const TELEFONO_WHATSAPP = "18093163500";
 
-        // Marca aquí los números que ya están VENDIDOS
-        // Ejemplo: const numerosVendidos = [1, 5, 12, 88, 150];
         const numerosVendidos = [];
 
-        // ================== EFECTOS DE SONIDO (WEB AUDIO API) ==================
+        // ================== EFECTOS DE SONIDO ==================
         let audioCtx;
 
         function initAudio() {
@@ -552,19 +620,24 @@
             const lista = document.getElementById('listaNumeros');
             const total = document.getElementById('totalPagar');
             const btn = document.getElementById('btnWhatsapp');
+
+            const nombre = document.getElementById('nombreComprador').value.trim();
+            const telefono = document.getElementById('telefonoComprador').value.trim();
             
             if (numerosSeleccionados.length > 0) {
                 box.classList.add('activo');
                 lista.textContent = numerosSeleccionados.join(', ');
                 total.textContent = `RD$ ${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}`;
                 
-                const mensaje = encodeURIComponent(
-                    `¡Hola! Quiero participar en la rifa "Regala una Sonrisa esta Navidad". ` +
-                    `Mis números seleccionados son: ${numerosSeleccionados.join(', ')}.\n` +
-                    `Total a pagar: RD$${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}\n\n` +
-                    `Por favor envíame los datos para realizar el pago.`
-                );
-                btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensaje}`;
+                let textoMensaje = `Mis números son: ${numerosSeleccionados.join(', ')}\n`;
+                textoMensaje += `Total a pagar: RD$${(numerosSeleccionados.length * PRECIO_BOLETO).toFixed(2)}\n\n`;
+                
+                if (nombre) textoMensaje += `Nombre: ${nombre}\n`;
+                if (telefono) textoMensaje += `Teléfono: ${telefono}\n`;
+                
+                textoMensaje += `\nAdjunto mi comprobante de pago.`;
+
+                btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(textoMensaje)}`;
             } else {
                 box.classList.remove('activo');
                 btn.href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent('¡Hola! Quiero participar en la rifa.')}`;
