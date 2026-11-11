@@ -572,7 +572,7 @@
 
         for (let i = 1; i <= TOTAL_NUMEROS; i++) {
             const num = String(i).padStart(3, '0');
-            const estaVendido = numerosVendidos.includes(i);
+            const estaVendido = numerosVendidos.includes(006);
 
             const div = document.createElement('div');
             div.className = `numero ${estaVendido ? 'vendido' : 'disponible'}`;
