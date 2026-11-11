@@ -125,7 +125,7 @@
             margin-bottom: 8px;
         }
 
-        /* Cuentas Bancarias con Botones Inteligentes */
+        /* Cuentas Bancarias con Botones de Redirección */
         .banco-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -172,15 +172,13 @@
             gap: 6px;
             background: linear-gradient(135deg, #4f46e5, #6366f1);
             color: white;
-            padding: 9px 16px;
+            padding: 8px 16px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-            cursor: pointer;
-            border: none;
         }
 
         .btn-banco:hover {
@@ -487,7 +485,7 @@
         <header>
             <div class="brand-name">PRO-FONDO: Regala una Sonrisa esta Navidad</div>
             <p class="tagline">Fundación Manitos a Colores — Recaudando para regalos en el Día de Reyes</p>
-            <a href="https://www.instagram.com/manitosacoloresfundacion?srtk=MWd4cnBtODBteGxjbg==" class="instagram-link" target="_blank">
+            <a href="https://www.instagram.com/manitosacoloresfundacion?srtk=MWd4cnBtODBteGxjbg==" class="instagram-btn" target="_blank">
                 📷 Síguenos en Instagram
             </a>
         </header>
@@ -517,9 +515,9 @@
                     <div class="banco-cuenta">21758490021</div>
                     <p><strong>Titular:</strong> Estefany Familia</p>
                 </div>
-                <button type="button" class="btn-banco" onclick="abrirBanco('bhd')">
-                    📱 Abrir App / Pagar (BHD)
-                </button>
+                <a href="https://www.bhd.com.do" target="_blank" class="btn-banco">
+                    🌐 Ir a Pagar (BHD)
+                </a>
             </div>
             <div class="banco-box">
                 <div>
@@ -528,9 +526,9 @@
                     <div class="banco-cuenta">9603711832</div>
                     <p><strong>Titular:</strong> Alexander Pérez</p>
                 </div>
-                <button type="button" class="btn-banco" onclick="abrirBanco('banreservas')">
-                    📱 Abrir App / Pagar (Banreservas)
-                </button>
+                <a href="https://www.banreservas.com" target="_blank" class="btn-banco">
+                    🌐 Ir a Pagar (Banreservas)
+                </a>
             </div>
         </div>
 
@@ -638,38 +636,6 @@
 
         const numerosVendidos = [];
 
-        // ================== APERTURA INTELIGENTE DE BANCOS ==================
-        function abrirBanco(banco) {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            const isAndroid = /Android/.test(navigator.userAgent);
-
-            let appScheme = '';
-            let webFallback = '';
-
-            if (banco === 'bhd') {
-                // Esquemas de BHD (BHD León / BHD Personal)
-                appScheme = isIOS ? 'bhdnet://' : 'intent://bhdnet#Intent;scheme=bhdnet;package=com.bhd.bhdnet;end;';
-                webFallback = 'https://www.bhd.com.do';
-            } else if (banco === 'banreservas') {
-                // Esquemas de Banreservas (App Banreservas Personal)
-                appScheme = isIOS ? 'banreservas://' : 'intent://banreservas#Intent;scheme=banreservas;package=com.banreservas.persona;end;';
-                webFallback = 'https://www.banreservas.com';
-            }
-
-            if (isIOS || isAndroid) {
-                // Intenta abrir la app en móvil
-                window.location.href = appScheme;
-                
-                // Si en un par de segundos la app no abrió (por no estar instalada), redirige a la web de respaldo
-                setTimeout(() => {
-                    window.location.href = webFallback;
-                }, 2000);
-            } else {
-                // Si está en PC, abre directamente la web oficial en una pestaña nueva
-                window.open(webFallback, '_blank');
-            }
-        }
-
         // ================== EFECTOS DE SONIDO ==================
         let audioCtx;
 
@@ -720,7 +686,7 @@
             } catch (e) {}
         }
 
-        // ================== LÓGICA DE LA RIFA ==================
+        // ================== LÓGICA ==================
         let numerosSeleccionados = [];
         const container = document.getElementById('numerosContainer');
 
