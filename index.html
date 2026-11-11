@@ -9,14 +9,17 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Fondo completo para la página con la imagen de regalos de niños */
         body {
-            background: linear-gradient(180deg, #fff9f0, #fff);
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.88)), 
+                        url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=1600&auto=format&fit=crop') fixed center center;
+            background-size: cover;
+            color: #f5f5f5;
             min-height: 100vh;
-            padding: 15px;
-            color: #333;
+            padding: 20px 10px;
         }
 
         .container {
@@ -24,82 +27,105 @@
             margin: 0 auto;
         }
 
+        /* Encabezado con su propia imagen de fondo sutil y desenfoque */
         header {
             text-align: center;
-            padding: 25px 15px;
-            background: linear-gradient(135deg, #c41e3a, #e63946);
-            border-radius: 16px;
-            color: white;
+            padding: 45px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                        url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=1200&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            border: 1px solid rgba(196, 30, 58, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
             margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
+            backdrop-filter: blur(5px);
         }
 
-        header h1 {
-            font-size: 1.6rem;
-            margin-bottom: 5px;
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff4b5c, #ff7b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
-        header p {
-            opacity: 0.95;
-            font-size: 1rem;
-            margin-bottom: 12px;
+        .tagline {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 18px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
 
-        .instagram-link {
+        .instagram-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.2);
+            gap: 8px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
             text-decoration: none;
             font-size: 0.85rem;
-            font-weight: bold;
-            transition: background 0.2s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.35);
+            transition: transform 0.2s;
         }
 
-        .instagram-link:hover {
-            background: rgba(255, 255, 255, 0.35);
+        .instagram-btn:hover {
+            transform: translateY(-2px);
         }
 
+        /* Subtítulo de aviso */
         .subtitulo {
-            background: #fff3cd;
-            border-left: 4px solid #f59e0b;
-            padding: 12px 15px;
-            border-radius: 8px;
+            background: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffae00;
+            padding: 14px 18px;
+            border-radius: 10px;
             margin-bottom: 25px;
             text-align: center;
             font-weight: 500;
+            color: #ffdf7e;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .como-participar {
-            background: white;
-            border-radius: 12px;
+        /* Bloques generales de contenido */
+        .card-box {
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
             padding: 20px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border-top: 4px solid #16a34a;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
 
-        .como-participar h3 {
-            color: #16a34a;
+        .card-box h3 {
+            color: #ffae00;
             margin-bottom: 12px;
-            font-size: 1.1rem;
-            text-align: center;
+            font-size: 1.15rem;
         }
 
+        /* Cómo participar */
         .como-participar ol {
             padding-left: 20px;
             font-size: 0.95rem;
             line-height: 1.6;
-            color: #444;
+            color: #d1d1d1;
         }
 
         .como-participar li {
             margin-bottom: 8px;
         }
 
+        /* Cuentas Bancarias con Botones de Redirección */
         .banco-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -108,15 +134,19 @@
         }
 
         .banco-box {
-            background: #eef2ff;
-            border: 2px dashed #6366f1;
-            border-radius: 12px;
+            background: rgba(30, 30, 40, 0.85);
+            border: 1px dashed #6366f1;
+            border-radius: 14px;
             padding: 18px;
             text-align: center;
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .banco-box h3 {
-            color: #3730a3;
+            color: #818cf8;
             margin-bottom: 6px;
             font-size: 1.05rem;
         }
@@ -124,61 +154,87 @@
         .banco-cuenta {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #1e1b4b;
+            color: #ffffff;
             letter-spacing: 1px;
-            margin: 4px 0;
+            margin: 6px 0;
         }
 
         .banco-box p {
             font-size: 0.85rem;
-            color: #444;
+            color: #bbb;
+            margin-bottom: 12px;
         }
 
+        .btn-banco {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-banco:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Premios */
         .premios-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .premio-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px 20px;
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-top: 4px solid;
         }
 
         .premio-card:nth-child(1) { border-top-color: #f59e0b; }
         .premio-card:nth-child(2) { border-top-color: #9ca3af; }
-        .premio-card:nth-child(3) { border-top-color: #c41e3a; }
+        .premio-card:nth-child(3) { border-top-color: #e63946; }
 
         .premio-numero {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .premio-card:nth-child(1) .premio-numero { color: #f59e0b; }
-        .premio-card:nth-child(2) .premio-numero { color: #6b7280; }
-        .premio-card:nth-child(3) .premio-numero { color: #c41e3a; }
+        .premio-card:nth-child(2) .premio-numero { color: #d1d5db; }
+        .premio-card:nth-child(3) .premio-numero { color: #ff4b5c; }
 
         .premio-card h3 {
-            font-size: 1rem;
-            color: #444;
+            font-size: 0.95rem;
+            color: #e0e0e0;
         }
 
+        /* Barra Informativa */
         .info-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             justify-content: space-around;
-            background: white;
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
             padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .info-item {
@@ -187,23 +243,33 @@
 
         .info-item strong {
             display: block;
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 0.85rem;
+            color: #aaa;
             margin-bottom: 4px;
         }
 
         .info-item span {
             font-size: 1.15rem;
             font-weight: bold;
-            color: #c41e3a;
+            color: #ffae00;
+        }
+
+        /* Barra de Progreso */
+        .progress-container {
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
+            padding: 15px 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .progress-bar {
             height: 22px;
-            background: #e5e7eb;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 11px;
             overflow: hidden;
-            margin: 10px 0;
+            margin-top: 8px;
         }
 
         .progress-fill {
@@ -219,78 +285,101 @@
             transition: width 0.4s ease;
         }
 
+        /* Selección de Números */
+        .numbers-section {
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 25px;
+        }
+
         .numbers-section h3 {
-            margin: 25px 0 12px;
-            color: #333;
+            color: #ffae00;
             text-align: center;
+            margin-bottom: 12px;
         }
 
         .leyenda {
             text-align: center;
             font-size: 0.85rem;
-            color: #666;
+            color: #aaa;
             margin-bottom: 15px;
         }
 
         .leyenda span {
             display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
             margin: 0 4px;
+            font-weight: 600;
         }
 
-        .disp { background: #dcfce7; color: #166534; }
-        .vend { background: #fee2e2; color: #991b1b; }
-        .sel { background: #bfdbfe; color: #1e40af; }
+        .disp { background: rgba(22, 101, 52, 0.5); color: #86efac; border: 1px solid #166534; }
+        .vend { background: rgba(153, 27, 27, 0.5); color: #fca5a5; border: 1px solid #991b1b; }
+        .sel { background: rgba(30, 64, 175, 0.6); color: #93c5fd; border: 1px solid #1e40af; }
+
+        .scroll-tip {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
 
         .numbers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
             gap: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
         .numero {
-            padding: 8px 4px;
-            border-radius: 6px;
+            padding: 10px 4px;
+            border-radius: 8px;
             text-align: center;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.15s;
             font-size: 0.9rem;
-            border: 2px solid transparent;
+            border: 1px solid transparent;
         }
 
         .numero.disponible {
-            background: #dcfce7;
-            color: #166534;
-            border-color: #86efac;
+            background: rgba(22, 101, 52, 0.35);
+            color: #86efac;
+            border-color: rgba(134, 239, 172, 0.3);
         }
 
         .numero.disponible:hover {
-            background: #86efac;
+            background: rgba(22, 101, 52, 0.7);
             transform: scale(1.08);
         }
 
         .numero.vendido {
-            background: #fee2e2;
-            color: #991b1b;
-            border-color: #fca5a5;
+            background: rgba(153, 27, 27, 0.35);
+            color: #fca5a5;
+            border-color: rgba(252, 165, 165, 0.2);
             cursor: not-allowed;
-            opacity: 0.85;
+            opacity: 0.6;
         }
 
         .numero.seleccionado {
-            background: #bfdbfe;
-            color: #1e40af;
+            background: rgba(37, 99, 235, 0.5);
+            color: #ffffff;
             border-color: #93c5fd;
-            box-shadow: 0 0 6px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
         }
 
+        /* Caja de selección y formulario flotante */
         .seleccionados-box {
             margin-top: 20px;
-            padding: 20px;
-            background: #e0f2fe;
-            border-radius: 10px;
+            padding: 18px;
+            background: rgba(20, 30, 50, 0.9);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
             display: none;
         }
 
@@ -306,88 +395,107 @@
         }
 
         .form-group input {
-            padding: 10px 14px;
-            border: 1px solid #93c5fd;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             font-size: 0.95rem;
+            color: #fff;
             width: 100%;
         }
 
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        /* Botón WhatsApp */
         .comprar-box {
-            background: white;
+            background: rgba(18, 18, 18, 0.84);
+            backdrop-filter: blur(8px);
             padding: 25px;
-            border-radius: 12px;
-            margin-top: 25px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 25px;
+        }
+
+        .comprar-box h3 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .comprar-box p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
         }
 
         .btn-whatsapp {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             background: #25d366;
             color: white;
-            padding: 13px 28px;
-            border-radius: 50px;
+            padding: 14px 28px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1rem;
-            margin-top: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s;
         }
 
         .btn-whatsapp:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+            transform: scale(1.02);
         }
 
+        /* Reglas */
         .reglas {
-            margin-top: 30px;
+            background: rgba(30, 25, 15, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
             padding: 20px;
-            background: #fef3c7;
-            border-radius: 10px;
             font-size: 0.9rem;
             line-height: 1.7;
+            color: #e5e7eb;
         }
 
         .reglas h4 {
             margin-bottom: 10px;
-            color: #92400e;
+            color: #ffae00;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 20px;
             font-size: 0.85rem;
-            color: #777;
-        }
-
-        .scroll-tip {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-            margin: 8px 0 15px;
+            color: #aaa;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <header>
-            <h1>PRO-FONDO: Regala una Sonrisa esta Navidad</h1>
-            <p>Fundación Manitos a Colores — Recaudando para juguetes en el Día de Reyes</p>
-            <a href="https://www.instagram.com/manitosacoloresfundacion?srtk=MWd4cnBtODBteGxjbg==" class="instagram-link" target="_blank">
+            <div class="brand-name">PRO-FONDO: Regala una Sonrisa esta Navidad</div>
+            <p class="tagline">Fundación Manitos a Colores — Recaudando para regalos en el Día de Reyes</p>
+            <a href="https://www.instagram.com/manitosacoloresfundacion?srtk=MWd4cnBtODBteGxjbg==" class="instagram-btn" target="_blank">
                 📷 Síguenos en Instagram
             </a>
         </header>
 
         <div class="subtitulo">
-            Tu boleto también es una ayuda para regalar sonrisas a niños necesitados.
+            ✨ Tu boleto también es una ayuda para regalar sonrisas a niños necesitados. ✨
         </div>
 
         <!-- CÓMO PARTICIPAR -->
-        <div class="como-participar">
+        <div class="card-box como-participar">
             <h3>¿Cómo participar?</h3>
             <ol>
                 <li><strong>Selecciona tu(s) número(s)</strong> disponibles abajo.</li>
@@ -401,16 +509,26 @@
         <!-- DATOS BANCARIOS -->
         <div class="banco-container">
             <div class="banco-box">
-                <h3>💳 Banco BHD</h3>
-                <p>Cuenta de Ahorros</p>
-                <div class="banco-cuenta">21758490021</div>
-                <p><strong>Titular:</strong> Estefany Familia</p>
+                <div>
+                    <h3>💳 Banco BHD</h3>
+                    <p>Cuenta de Ahorros</p>
+                    <div class="banco-cuenta">21758490021</div>
+                    <p><strong>Titular:</strong> Estefany Familia</p>
+                </div>
+                <a href="https://www.bhd.com.do" target="_blank" class="btn-banco">
+                    🌐 Ir a Pagar (BHD)
+                </a>
             </div>
             <div class="banco-box">
-                <h3>💳 Banreservas</h3>
-                <p>Cuenta de Ahorros</p>
-                <div class="banco-cuenta">9603711832</div>
-                <p><strong>Titular:</strong> Alexander Pérez</p>
+                <div>
+                    <h3>💳 Banreservas</h3>
+                    <p>Cuenta de Ahorros</p>
+                    <div class="banco-cuenta">9603711832</div>
+                    <p><strong>Titular:</strong> Alexander Pérez</p>
+                </div>
+                <a href="https://www.banreservas.com" target="_blank" class="btn-banco">
+                    🌐 Ir a Pagar (Banreservas)
+                </a>
             </div>
         </div>
 
@@ -446,9 +564,11 @@
             </div>
         </div>
 
-        <p style="text-align:center; font-size:0.9rem; color:#555;">Progreso de venta</p>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill">0%</div>
+        <div class="progress-container">
+            <p style="text-align:center; font-size:0.9rem; color:#bbb;">Progreso de venta</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
         </div>
 
         <!-- NÚMEROS -->
@@ -467,8 +587,8 @@
 
             <!-- FORMULARIO DE COMPRADOR -->
             <div class="seleccionados-box" id="seleccionadosBox">
-                <strong>Mis números son:</strong> <span id="listaNumeros"></span>
-                <p style="margin-top:6px; font-weight:bold; color:#1e40af;">
+                <strong style="color: #93c5fd;">Mis números son:</strong> <span id="listaNumeros" style="color: #fff; font-weight: bold;"></span>
+                <p style="margin-top:6px; font-weight:bold; color:#ffae00;">
                     Total a pagar: <span id="totalPagar">RD$ 0.00</span>
                 </p>
 
@@ -484,7 +604,7 @@
             <h3>Reserva y confirma tu pago por WhatsApp</h3>
             <p>Se abrirá WhatsApp con el resumen de tus números y los datos de las cuentas</p>
             <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank">
-                Enviar por WhatsApp
+                📲 Enviar por WhatsApp
             </a>
         </div>
 
@@ -496,7 +616,7 @@
                 2. Fecha límite de venta: 19 de diciembre de 2026<br>
                 3. Sorteo: 20 de diciembre de 2026 (Transmitido vía Instagram)<br>
                 4. Los números se reservan una vez confirmado el pago<br>
-                5. Los fondos recaudados se destinan a regalar juguetes a niños necesitados en el Día de Reyes<br>
+                5. Los fondos recaudados se destinan a regalar detalles a niños necesitados en el Día de Reyes<br>
                 6. Solo participan personas mayores de 18 años<br>
                 7. Organizador: Fundación Manitos a Colores
             </p>
